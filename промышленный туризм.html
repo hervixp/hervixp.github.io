@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Промтур Татарстан | Промышленный туризм РТ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f6f9fc;
+            color: #0a2540;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+        .header {
+            background: white;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #e31c23, #b11218);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+        }
+        .logo span {
+            color: #1e5a7d;
+            background: none;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 500;
+            color: #1a4a6f;
+            transition: 0.2s;
+            cursor: pointer;
+        }
+        .nav-links a:hover {
+            color: #e31c23;
+        }
+        .btn-outline {
+            border: 1.5px solid #e31c23;
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
+            background: white;
+            color: #e31c23;
+            font-weight: 600;
+        }
+        .hero {
+            background: linear-gradient(105deg, #0b2b3b 0%, #1e5a7d 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn-primary {
+            background: #e31c23;
+            padding: 0.8rem 2rem;
+            border-radius: 60px;
+            color: white;
+            font-weight: 700;
+            text-decoration: none;
+            transition: 0.2s;
+            display: inline-block;
+            cursor: pointer;
+            border: none;
+        }
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            border-left: 5px solid #e31c23;
+            padding-left: 1rem;
+        }
+        .filter-bar {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+            justify-content: center;
+        }
+        .filter-btn {
+            background: #eef2f9;
+            border: none;
+            padding: 0.5rem 1.4rem;
+            border-radius: 40px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.2s;
+            font-family: 'Inter', sans-serif;
+        }
+        .filter-btn.active, .filter-btn:hover {
+            background: #e31c23;
+            color: white;
+        }
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        .tour-card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 12px 24px rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+        }
+        .tour-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 30px rgba(0,0,0,0.1);
+        }
+        .card-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            justify-content: flex-start;
+            padding: 1rem;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+        .card-img span {
+            position: relative;
+            z-index: 2;
+            background: rgba(0,0,0,0.5);
+            padding: 0.3rem 0.8rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+        }
+        .card-content {
+            padding: 1.2rem 1.5rem 1.5rem;
+        }
+        .price {
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: #e31c23;
+            margin: 0.5rem 0;
+        }
+        .btn-book {
+            background: #0a2540;
+            color: white;
+            border: none;
+            padding: 0.7rem 1rem;
+            border-radius: 40px;
+            font-weight: 600;
+            width: 100%;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-top: 0.8rem;
+            font-family: 'Inter', sans-serif;
+        }
+        .btn-book:hover {
+            background: #e31c23;
+        }
+        .badge-cat {
+            display: inline-block;
+            background: #eef2ff;
+            color: #1e5a7d;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            padding: 0.2rem 0.8rem;
+            font-weight: 600;
+        }
+        footer {
+            background: #0a2540;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+        @media (max-width: 700px) {
+            .hero h1 { font-size: 2rem; }
+            .header-container { flex-direction: column; }
+            .cards-grid { grid-template-columns: 1fr; }
+        }
+        .personality {
+            background: #eef2fa;
+            border-radius: 28px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+        .personality-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: space-between;
+            margin-top: 1rem;
+        }
+        .personality-item {
+            flex: 1;
+            min-width: 180px;
+            background: white;
+            padding: 1rem;
+            border-radius: 20px;
+            text-align: center;
+        }
+        .personality-item i {
+            font-size: 2rem;
+            color: #e31c23;
+            margin-bottom: 0.5rem;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            overflow-y: auto;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal.active {
+            display: flex;
+        }
+        .modal-content {
+            background: white;
+            max-width: 900px;
+            width: 90%;
+            margin: 2rem auto;
+            border-radius: 32px;
+            overflow: hidden;
+            animation: modalFadeIn 0.3s ease;
+        }
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .modal-header {
+            position: relative;
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            background: linear-gradient(135deg, #1e5a7d, #0b2b3b);
+        }
+        .modal-header-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(0deg, rgba(0,0,0,0.7), transparent);
+            padding: 2rem;
+            color: white;
+        }
+        .modal-header-overlay h2 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-close:hover {
+            background: #e31c23;
+        }
+        .modal-body {
+            padding: 2rem;
+        }
+        .modal-section {
+            margin-bottom: 1.5rem;
+        }
+        .modal-section h3 {
+            color: #e31c23;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        .modal-section p {
+            color: #334155;
+            line-height: 1.5;
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 0.8rem;
+            background: #f1f5f9;
+            padding: 1rem;
+            border-radius: 16px;
+            margin: 1rem 0;
+        }
+        .info-item {
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        .booking-section {
+            background: white;
+            border-radius: 28px;
+            padding: 2rem;
+            margin-top: 2rem;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+        }
+        .booking-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.2rem;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+        .form-group label {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: #1e5a7d;
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            padding: 0.8rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            transition: 0.2s;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: #e31c23;
+            box-shadow: 0 0 0 3px rgba(227,28,35,0.1);
+        }
+        .submit-btn {
+            background: #e31c23;
+            color: white;
+            border: none;
+            padding: 0.9rem;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-top: 0.5rem;
+        }
+        .submit-btn:hover {
+            background: #b11218;
+        }
+        .form-row-2 {
+            grid-column: span 2;
+        }
+        @media (max-width: 700px) {
+            .form-row-2 {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <div class="header-container">
+        <div class="logo">ПРОМТУР <span>ТАТАРСТАН</span></div>
+        <div class="nav-links">
+            <a href="#" onclick="scrollToSection('routes')">Маршруты</a>
+            <a href="#" onclick="scrollToSection('booking')">Бронирование</a>
+            <a href="#" class="btn-outline">+ ОФИС 123-45</a>
+        </div>
+    </div>
+</div>
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>ОТКРОЙТЕ ТАТАРСТАН <br>С ПРОМЫШЛЕННОЙ СТОРОНЫ</h1>
+        <p>Уникальные экскурсии по заводам, цехам и инфраструктурным объектам Республики Татарстан</p>
+        <div class="hero-buttons">
+            <a href="#routes" class="btn-primary" onclick="scrollToSection('routes')">ВЫБРАТЬ МАРШРУТ →</a>
+        </div>
+    </div>
+</section>
+
+<div class="container" id="routes">
+    <div class="section-title">📋 МАРШРУТЫ</div>
+    <div class="filter-bar" id="filterBar">
+        <button class="filter-btn active" data-filter="all">Все</button>
+        <button class="filter-btn" data-filter="Авиация">Авиация</button>
+        <button class="filter-btn" data-filter="Нефтехимия">Нефтехимия</button>
+        <button class="filter-btn" data-filter="Авто">Авто</button>
+        <button class="filter-btn" data-filter="Энергетика">Энергетика</button>
+        <button class="filter-btn" data-filter="Индустриальный парк">Индустриальный парк</button>
+    </div>
+
+    <div class="cards-grid" id="cardsContainer"></div>
+
+    <div class="booking-section" id="booking">
+        <div class="section-title" style="margin-top: 0;">📝 ЗАБРОНИРОВАТЬ ЭКСКУРСИЮ</div>
+        <form class="booking-form" id="bookingForm">
+            <div class="form-group">
+                <label><i class="fas fa-building"></i> Выберите предприятие *</label>
+                <select id="enterpriseSelect" required>
+                    <option value="">-- Выберите из списка --</option>
+                    <option value="Казанский вертолётный завод">Казанский вертолётный завод (2.5 ч, 1500 ₽)</option>
+                    <option value="Нижнекамскнефтехим (НКНХ)">Нижнекамскнефтехим (3 ч, 2000 ₽)</option>
+                    <option value="КАМАЗ">КАМАЗ (4 ч, 1800 ₽)</option>
+                    <option value="Нижнекамская ГЭС">Нижнекамская ГЭС (2 ч, 1200 ₽)</option>
+                    <option value="ТАИФ-НК (НПЗ)">ТАИФ-НК (3 ч, 2500 ₽)</option>
+                    <option value="Казаньоргсинтез">Казаньоргсинтез (3 ч, 1250 ₽)</option>
+                    <option value="ОЭЗ «Алабуга»">ОЭЗ «Алабуга» (5 ч, 3000 ₽)</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label><i class="fas fa-user"></i> ФИО *</label>
+                <input type="text" id="fullName" placeholder="Иванов Иван Иванович" required>
+            </div>
+            <div class="form-group">
+                <label><i class="fas fa-envelope"></i> Электронная почта *</label>
+                <input type="email" id="email" placeholder="ivanov@example.com" required>
+            </div>
+            <div class="form-group">
+                <label><i class="fas fa-phone"></i> Номер телефона *</label>
+                <input type="tel" id="phone" placeholder="+7 (XXX) XXX-XX-XX" required>
+            </div>
+            <div class="form-group">
+                <label><i class="fas fa-calendar-alt"></i> Желаемая дата</label>
+                <input type="date" id="date">
+            </div>
+            <div class="form-group">
+                <label><i class="fas fa-users"></i> Количество человек</label>
+                <input type="number" id="persons" min="1" max="40" value="2">
+            </div>
+            <div class="form-group form-row-2">
+                <label><i class="fas fa-comment"></i> Дополнительные пожелания</label>
+                <textarea id="comment" rows="2" placeholder="Укажите особые пожелания или вопросы"></textarea>
+            </div>
+            <button type="submit" class="submit-btn"><i class="fas fa-check-circle"></i> ОТПРАВИТЬ ЗАЯВКУ</button>
+        </form>
+    </div>
+
+    <div class="personality">
+        <div style="font-weight: 800; font-size: 1.4rem; margin-bottom: 0.5rem;">👥 Экскурсии под любую аудиторию</div>
+        <div class="personality-grid">
+            <div class="personality-item"><i class="fas fa-graduation-cap"></i><br><strong>Школьники</strong><br>Простое объяснение, как создаются вещи, интерактив, безопасность.</div>
+            <div class="personality-item"><i class="fas fa-microscope"></i><br><strong>Студенты</strong><br>Технические детали, профориентация, инженерные решения.</div>
+            <div class="personality-item"><i class="fas fa-users"></i><br><strong>Семьи</strong><br>Упрощённый формат, сочетание музеев и экскурсий.</div>
+            <div class="personality-item"><i class="fas fa-chart-line"></i><br><strong>Профессионалы</strong><br>Бизнес-процессы, технологии, управление качеством.</div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 Промтур Татарстан — единая цифровая платформа промышленного туризма РТ</p>
+    <p style="margin-top: 8px; font-size:0.8rem;">📍 Казань, ул. Беломорская, 101 | Все экскурсии по предварительной записи</p>
+    <p style="margin-top: 8px; font-size:0.7rem;">📞 Бронирование: +7 (843) 123-45-67 | booking@promtur-rt.ru</p>
+</footer>
+
+<div id="enterpriseModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header" id="modalHeader">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <div class="modal-header-overlay">
+                <h2 id="modalTitle"></h2>
+                <span class="badge-cat" id="modalCategory"></span>
+            </div>
+        </div>
+        <div class="modal-body" id="modalBody"></div>
+    </div>
+</div>
+
+<script>
+    // Цветные заглушки для карточек (вместо фотографий)
+    const enterpriseColors = {
+        "Казанский вертолётный завод": "linear-gradient(135deg, #1e5a7d, #0b2b3b)",
+        "Нижнекамскнефтехим (НКНХ)": "linear-gradient(135deg, #2c5a2e, #1a3b1c)",
+        "КАМАЗ": "linear-gradient(135deg, #b11218, #8b0e13)",
+        "Нижнекамская ГЭС": "linear-gradient(135deg, #1a6f8f, #0e4a62)",
+        "ТАИФ-НК (НПЗ)": "linear-gradient(135deg, #4a4a4a, #2d2d2d)",
+        "Казаньоргсинтез": "linear-gradient(135deg, #5a3a7a, #3a2450)",
+        "ОЭЗ «Алабуга»": "linear-gradient(135deg, #2a6d4e, #1a4d35)"
+    };
+
+    const enterpriseTexts = {
+        "Казанский вертолётный завод": "🚁",
+        "Нижнекамскнефтехим (НКНХ)": "🧪",
+        "КАМАЗ": "🚛",
+        "Нижнекамская ГЭС": "⚡",
+        "ТАИФ-НК (НПЗ)": "🛢",
+        "Казаньоргсинтез": "🧪",
+        "ОЭЗ «Алабуга»": "🏭"
+    };
+
+    const enterprisesDetails = {
+        "Казанский вертолётный завод": {
+            category: "Авиация",
+            history: "Основан в 1940 году как авиационный завод №387. В годы Великой Отечественной войны предприятие стало основным производителем легендарных бипланов По-2 («ночные ведьмы»). С 1951 года завод перепрофилировался на выпуск вертолетной техники, начав с Ми-1. Сегодня это ключевое предприятие холдинга «Вертолеты России».",
+            route: "Встреча у проходной (15 мин) → Музей истории вертолётостроения (30 мин) → Сборочный цех Ми-8/17 (45 мин) → Цех окончательной сборки (30 мин) → Лётное поле (20 мин)",
+            objects: "Процесс сборки несущего винта, готовая авиационная техника на лётном поле, исторические экспонаты музея.",
+            rules: "Возраст 12+. Закрытая обувь; спецодежда выдается. Группа от 5 до 15 человек.",
+            price: 1500, duration: "2.5 ч", group: "10-15 чел", age: "12+"
+        },
+        "Нижнекамскнефтехим (НКНХ)": {
+            category: "Нефтехимия",
+            history: "Строительство началось в 1960 году. Первая продукция получена в 1967 году. Сегодня НКНХ — лидер по производству изопренового каучука в мире и один из крупнейших производителей полимеров в Европе.",
+            route: "Инструктаж по ТБ, выдача СИЗ (20 мин) → Музей завода (25 мин) → Установка каталитического крекинга (40 мин) → Лаборатория (30 мин) → Производство полиэтилена (35 мин) → Обед в столовой (30 мин)",
+            objects: "Установка крекинга, лаборатория контроля качества, смотровая площадка на высоте 50 метров.",
+            rules: "Возраст 16+. Высокая сложность. Обязательны защитные очки и спецобувь.",
+            price: 2000, duration: "3 ч", group: "15-20 чел", age: "16+"
+        },
+        "КАМАЗ": {
+            category: "Авто",
+            history: "Постановление о строительстве подписано в 1969 году. Первый автомобиль сошел с конвейера в 1976 году. КАМАЗ известен победами команды «КАМАЗ-мастер» в ралли «Дакар».",
+            route: "Музей истории КАМАЗа (45 мин) → Трансфер на производство (10 мин) → Сборочная линия (50 мин) → Испытательный полигон (30 мин) → Тест-драйв (20 мин)",
+            objects: "Главный сборочный конвейер, испытательный полигон, легендарные модели автомобилей.",
+            rules: "Возраст 12+. Закрытая обувь. Тест-драйв по предварительной записи.",
+            price: 1800, duration: "4 ч", group: "15-25 чел", age: "12+"
+        },
+        "Нижнекамская ГЭС": {
+            category: "Энергетика",
+            history: "Строительство началось в 1963 году. Первый гидроагрегат пущен в 1979 году. По гребню плотины проходят автомобильные и железнодорожные пути.",
+            route: "Видеопрезентация (15 мин) → Машинный зал (30 мин) → Плотина (25 мин) → Панорамная площадка (20 мин) → Щит управления (20 мин)",
+            objects: "Работающие гидротурбины, технические узлы плотины, панорамный вид на водохранилище.",
+            rules: "Доступно детям от 6 лет. Рекомендуется взять куртку.",
+            price: 1200, duration: "2 ч", group: "20-30 чел", age: "6+"
+        },
+        "ТАИФ-НК (НПЗ)": {
+            category: "Нефтехимия",
+            history: "Современное предприятие, созданное в конце 90-х годов. Уникальный комплекс глубокой переработки тяжелой высокосернистой нефти.",
+            route: "Инструктаж (20 мин) → Интерактивный макет НПЗ 1:500 (25 мин) → Установка гидрокрекинга (40 мин) → Производство бензинов (50 мин) → Лаборатория (25 мин)",
+            objects: "Макет завода, установки гидрокрекинга, лаборатория испытаний топлива.",
+            rules: "Строго 16+. Спецобувь и защитные очки.",
+            price: 2500, duration: "3 ч", group: "10-15 чел", age: "16+"
+        },
+        "Казаньоргсинтез": {
+            category: "Нефтехимия",
+            history: "Основан в 1958 году. Входит в состав СИБУР, единственный в России производитель поликарбонатов.",
+            route: "Встреча в лаборатории (10 мин) → Научно-популярная экскурсия (20 мин) → Лаборатория синтеза (30 мин) → Демонстрация опытов (25 мин) → Мастер-класс (25 мин)",
+            objects: "Современные лаборатории, производственные цеха полимеров.",
+            rules: "Возраст по согласованию. Спецодежда выдается.",
+            price: 1250, duration: "3 ч", group: "10-15 чел", age: "по согласованию"
+        },
+        "ОЭЗ «Алабуга»": {
+            category: "Индустриальный парк",
+            history: "Создана в 2005 году. Первая и самая успешная ОЭЗ промышленного типа в России.",
+            route: "Презентация ОЭЗ (30 мин) → Посещение 3-4 заводов резидентов → Обед (30 мин) → Инвестиционная презентация (20 мин)",
+            objects: "Производственные площадки мировых брендов, инфраструктура промзоны.",
+            rules: "Возраст 14+. Удобная обувь. Группа до 40 человек.",
+            price: 3000, duration: "5 ч", group: "20-40 чел", age: "14+"
+        }
+    };
+
+    const toursData = [
+        { name: "Казанский вертолётный завод", category: "Авиация", duration: "2.5 ч", price: 1500, group: "10-15 чел", age: "12+", desc: "Сборочный цех Ми-8/17, музей истории, лётное поле." },
+        { name: "Нижнекамскнефтехим (НКНХ)", category: "Нефтехимия", duration: "3 ч", price: 2000, group: "15-20 чел", age: "16+", desc: "Крекинг, полиэтилен, 50-метровая смотровая." },
+        { name: "КАМАЗ", category: "Авто", duration: "4 ч", price: 1800, group: "15-25 чел", age: "12+", desc: "Музей, конвейер, испытательный полигон, тест-драйв." },
+        { name: "Нижнекамская ГЭС", category: "Энергетика", duration: "2 ч", price: 1200, group: "20-30 чел", age: "6+", desc: "Машинный зал, плотина, панорама водохранилища." },
+        { name: "ТАИФ-НК (НПЗ)", category: "Нефтехимия", duration: "3 ч", price: 2500, group: "10-15 чел", age: "16+", desc: "Макет НПЗ, гидрокрекинг, лаборатория топлива." },
+        { name: "Казаньоргсинтез", category: "Нефтехимия", duration: "3 ч", price: 1250, group: "10-15 чел", age: "по соглас.", desc: "Производство полимеров, лаборатория, опыты." },
+        { name: "ОЭЗ «Алабуга»", category: "Индустриальный парк", duration: "5 ч", price: 3000, group: "20-40 чел", age: "14+", desc: "Заводы-резиденты, презентация, обед." }
+    ];
+
+    function getCardImage(name) {
+        return enterpriseColors[name];
+    }
+
+    function openModal(enterpriseName) {
+        const details = enterprisesDetails[enterpriseName];
+        if (!details) return;
+        
+        document.getElementById("modalTitle").innerText = enterpriseName;
+        document.getElementById("modalCategory").innerText = details.category;
+        
+        document.getElementById("modalBody").innerHTML = `
+            <div class="modal-section"><h3>📜 История предприятия</h3><p>${details.history}</p></div>
+            <div class="modal-section"><h3>🗺 Маршрут экскурсии</h3><p>${details.route}</p></div>
+            <div class="modal-section"><h3>🏭 Объекты показа</h3><p>${details.objects}</p></div>
+            <div class="modal-section"><h3>⚠ Правила и условия</h3><p>${details.rules}</p></div>
+            <div class="info-grid">
+                <div class="info-item">⏱ ${details.duration}</div>
+                <div class="info-item">👥 ${details.group}</div>
+                <div class="info-item">🔞 ${details.age}</div>
+                <div class="info-item">💰 ${details.price} ₽</div>
+            </div>
+            <button class="submit-btn" onclick="closeModal(); document.getElementById('enterpriseSelect').value='${enterpriseName}'; document.getElementById('booking').scrollIntoView({behavior:'smooth'})">📅 ЗАБРОНИРОВАТЬ</button>
+        `;
+        
+        document.getElementById("enterpriseModal").classList.add("active");
+        document.body.style.overflow = "hidden";
+    }
+
+    function closeModal() {
+        document.getElementById("enterpriseModal").classList.remove("active");
+        document.body.style.overflow = "auto";
+    }
+
+    function renderTours(filter = "all") {
+        const container = document.getElementById("cardsContainer");
+        const filtered = toursData.filter(t => filter === "all" || t.category === filter);
+        if(filtered.length === 0) {
+            container.innerHTML = "<div style='grid-column:1/-1; text-align:center; padding:2rem;'>Маршрутов в этой категории пока нет</div>";
+            return;
+        }
+        container.innerHTML = filtered.map(tour => {
+            const bgColor = getCardImage(tour.name);
+            const icon = enterpriseTexts[tour.name] || "🏭";
+            return `
+            <div class="tour-card" onclick="openModal('${tour.name}')">
+                <div class="card-img" style="background: ${bgColor}; display: flex; align-items: center; justify-content: center; font-size: 3rem;">
+                    <span style="background: none; font-size: 3rem;">${icon}</span>
+                </div>
+                <div class="card-content">
+                    <span class="badge-cat">${tour.category}</span>
+                    <h3 style="margin: 10px 0 5px;">${tour.name}</h3>
+                    <div style="font-size:0.85rem; color:#2c5a74;">⏱ ${tour.duration} • 👥 ${tour.group} • 🔞 ${tour.age}</div>
+                    <p style="margin: 10px 0;">${tour.desc}</p>
+                    <div class="price">${tour.price.toLocaleString()} ₽</div>
+                    <button class="btn-book" onclick="event.stopPropagation(); document.getElementById('enterpriseSelect').value='${tour.name}'; document.getElementById('booking').scrollIntoView({behavior:'smooth'})">ЗАБРОНИРОВАТЬ</button>
+                </div>
+            </div>
+        `}).join('');
+    }
+
+    const btns = document.querySelectorAll('.filter-btn');
+    btns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            btns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderTours(btn.getAttribute('data-filter'));
+        });
+    });
+    renderTours("all");
+
+    document.getElementById("bookingForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+        const enterprise = document.getElementById("enterpriseSelect").value;
+        const name = document.getElementById("fullName").value;
+        const email = document.getElementById("email").value;
+        const phone = document.getElementById("phone").value;
+        const date = document.getElementById("date").value;
+        const persons = document.getElementById("persons").value;
+        const comment = document.getElementById("comment").value;
+        
+        if (!enterprise || !name || !email || !phone) {
+            alert("❌ Пожалуйста, заполните обязательные поля: предприятие, ФИО, email и телефон");
+            return;
+        }
+        
+        alert(`✅ Заявка отправлена!\n\nПредприятие: ${enterprise}\nФИО: ${name}\nEmail: ${email}\nТелефон: ${phone}\nДата: ${date || "не указана"}\nКол-во человек: ${persons}\nПожелания: ${comment || "нет"}\n\nС вами свяжутся в ближайшее время для подтверждения.\n\n☎ +7 (843) 123-45-67\n✉ booking@promtur-rt.ru`);
+        
+        this.reset();
+    });
+
+    function scrollToSection(id) {
+        document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    }
+    window.scrollToSection = scrollToSection;
+
+    document.getElementById("enterpriseModal").addEventListener("click", function(e) {
+        if (e.target === this) closeModal();
+    });
+</script>
+</body>
+</html>
